@@ -123,3 +123,37 @@ body {
     position: absolute;
     left: 65%;
 }
+
+#pelota {
+    width: 1.5rem;
+    height: 1.5rem;
+    position: absolute;
+    left: 65%;
+}
+
+#logolesión {
+    width: 1.5rem;
+    height: 1.5rem;
+    position: absolute;
+    left: 70%;
+    border-radius: 0.2rem;
+}
+
+#botín, #guantes {
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    left: 65%;
+}
+
+#emoji {
+    font-size: 1rem;
+    position: absolute;
+    left: 60%;
+}
+
+#emoji2 {
+    font-size: 1rem;
+    position: absolute;
+    left: 65%;
+}
