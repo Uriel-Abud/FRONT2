@@ -19,6 +19,12 @@ body {
     background-color: rgb(15, 219, 42);
     width: 100%;
     height: 5rem;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: 0.5rem;
 }
 
 .verdeoscuro {
@@ -32,47 +38,88 @@ body {
     align-items: center;
 }
 
+#escudoboca {
+    width: 4.5rem;
+    height: 4.5rem;
+}
+
+#dt {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+#subrayado {
+    text-decoration: underline;
+}
+
+#colordt {
+    color: rgb(18, 20, 150);
+}
+
 .cuadradojugador {
-    width: auto;
+    width: 10%;
     height: auto;
-    padding: 1.5rem;
-    background-color: rgb(18, 20, 150);
+    padding: 1rem;
+    background-image: linear-gradient(to right,
+    rgb(18, 20, 150) 0% 30%,
+    #ebdc2e 30% 70%,
+    rgb(18, 20, 150) 70% 100%
+    );
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 2px solid white;
+    border: 3px solid white;
     border-radius: 1rem;
     gap: 0.5rem;
 }
 
 #arquero {
-    background-color: #1a684f;
-}
-
-#amarillo {
-    background-color: yellow;
+    background-image: none;
+    background-color: #1e1e1e;
 }
 
 .números {
     color: #ffeaea;
-    background-color: #ebdc2e;
-    padding: 0.5rem 1rem 0.5rem 1rem;
-    border-radius: 30px;
-}
-
-#el1 {
     background-color: black;
-}
-
-#azul {
-    background-color: #4121c1;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 80px;
+    font-size: 1.2rem;
+    margin-bottom: 0.1rem;
 }
 
 .letrasblancas {
-    color: #000000;
+    color: #1d1b17;
+    font-weight: bold;
 }
 
 .posiciones {
-    color: #b79e70;
+    color: #1d1b17;
+    font-style: italic;
+}
+
+#montero {
+    color: #e5dcca;
+    font-weight: bold;
+}
+
+#posiciónarquero {
+    color: #e5dcca;
+    font-style: italic;
+}
+
+#númeroycapitán {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+#logocapitán {
+    width: 1.5rem;
+    height: 1rem;
+    position: absolute;
+    left: 65%;
 }
