@@ -13,6 +13,10 @@ main {
     width: 100%;
     height: 100%;
     aspect-ratio: 1/1;
+    background-color: #f0e6e6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #partearribaceleste {
@@ -27,11 +31,96 @@ main {
 #trespartesarriba {
     width: 50%;
     height: 50%;
-    background-color: blue;
+    /*background-color: blue;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 #parterojaarriba {
     width: 20%;
     height: 100%;
     background-color: #f15d5d;
+}
+
+#partergrisclaroarriba {
+    width: 40%;
+    height: 100%;
+    background-color: #f0e6e6;
+}
+
+#partegrisoscuroarriba {
+    width: 40%;
+    height: 100%;
+    background-color: #a79595;
+}
+
+#partehorizontaldoscuadrados {
+    width: 100%;
+    height: 6rem;
+    background-color: #f0e6e6;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 0em 0.2em 0.5em #7f7f7f;
+}
+
+#seccióndoscuadrados {
+    height: 100%;
+    width: 10%;
+    /*background-color: red;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#cuadradoschiquitosarriba {
+    width: 20%;
+    aspect-ratio: 1;
+    background-color: #a79595;
+}
+
+#barrablancalarga {
+    height: 35%;
+    width: 80%;
+    background-color: white;
+}
+
+#partegrandedelmedio {
+    width: 90%;
+    height: calc(100% - 12rem);
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+}
+
+#partenaranjadentro {
+    width: 100%;
+    height: 15%;
+    background-color: rgb(238, 163, 25);
+}
+
+#parte1blancadentro {
+    width: 100%;
+    height: 31.5%;
+    background-color: white;
+}
+
+#partegrisoscurodentro {
+    width: 100%;
+    height: 7%;
+    background-color: rgb(177, 171, 171);
+}
+
+#partegrisclarodentro {
+    width: 100%;
+    height: 15%;
+    background-color: rgba(236, 230, 217, 0.979);
+}
+
+#parte2blancadentro {
+    width: 100%;
+    height: 31.5%;
+    background-color: white;
 }
