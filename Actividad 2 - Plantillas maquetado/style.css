@@ -329,11 +329,11 @@ main {
 #cuadradoblanco2 {
     width: 30%;
     aspect-ratio: 1;
-    background-color: #72726c;
+    background-color: #4e4e47;
 }
 
 #líneas3-2 {
-    width: 100%;
+    width: 70%;
     height: calc(100% - 50% - 1rem);
     /*background-color: rgb(201, 53, 169);*/
     display: flex;
@@ -365,7 +365,7 @@ main {
 #parte2blancadentro {
     width: 100%;
     height: 31.5%;
-    background-color: #72726c;
+    background-color: white;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -377,7 +377,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: blue;
+    /*background-color: blue;*/
     width: 30%;
     height: 85%;
 }
@@ -387,7 +387,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: blue;
+    /*background-color: blue;*/
     width: 30%;
     height: 85%;
 }
@@ -395,41 +395,145 @@ main {
 #terceraparte {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    background-color: blue;
+    /*background-color: blue;*/
     width: 30%;
     height: 85%;
+    gap: 1rem;
 }
 
 #líneas3-3 {
     width: 100%;
-    height: calc(100% - 50% - 1rem);
+    height: 90%;
     /*background-color: rgb(201, 53, 169);*/
     display: flex;
     flex-direction: column;
     justify-content: center;
     /*align-items: center;*/
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 
 #líneagruesa3 {
     width: 45%;
-    height: 15%;
+    height: 10%;
     background-color: #b3b3a4;
 }
 
 #líneasblancas3 {
     width: 100%;
-    height: 5%;
+    height: 3%;
     background-color: #d5d5c8;
 }
 
 #líneablancacorta3 {
     width: 50%;
-    height: 5%;
+    height: 3%;
     background-color: #d5d5c8;
     position: relative;
     left: 25%;
+    margin-bottom: 1rem;
+}
+
+#líneagruesaabajo {
+    width: 100%;
+    height: 15%;
+    background-color: #4e4e47;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+}
+
+#partecortanaranja {
+    width: 25%;
+    height: 100%;
+    background-color: orange;
+}
+
+#figuragrandegris {
+    width: 100%;
+    height: 90%;
+    background-color: rgb(177, 171, 171);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#triángulo {
+    width: 20%;
+    height: 25%;
+    background-color: white;
+    clip-path: polygon(0% 0%, 0% 100%, 100% 50%);
+}
+
+#partearriba {
+    width: 100%;
+    height: 45%;
+    /*background-color: yellow;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+}
+
+#cuadradogriscostado {
+    height: 100%;
+    aspect-ratio: 1;
+    background-color: rgb(177, 171, 171);
+}
+
+#laslíneas {
+    width: 50%;
+    height: 70%;
+    /*background-color: purple;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 1rem;
+}
+
+#primerlínea2 {
+    height: 15%;
+    width: 100%;
+    background-color: rgb(177, 171, 171);
+    margin-bottom: 1rem;
+}
+
+#segundalínea2 {
+    height: 10%;
+    width: 100%;
+    background-color: rgb(177, 171, 171);
+}
+
+#terceralínea2 {
+    height: 10%;
+    width: 50%;
+    background-color: rgb(177, 171, 171);
+}
+
+#parteabajo {
+    width: 100%;
+    height: 45%;
+    /*background-color: yellow;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    gap: 1rem;
+}
+
+#líneasblancas4 {
+    width: 100%;
+    height: 10%;
+    background-color: rgb(177, 171, 171);
+}
+
+#líneablancacorta4 {
+    width: 75%;
+    height: 10%;
+    background-color: rgb(177, 171, 171);
 }
