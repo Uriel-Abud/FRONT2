@@ -4,6 +4,27 @@
     padding: 0px;
 }
 
+body {
+  background-color: #bfbfff;
+}
+
 .comida-container {
   /* Estilos para el contenedor de la lista */
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 5rem 2rem;
+  width: 100vw;
+  padding: 2rem;
+  justify-content: space-between;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
+  border: 0.5rem solid black;
+  padding: 1rem;
 }

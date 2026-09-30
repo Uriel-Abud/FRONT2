@@ -74,16 +74,46 @@ let comidas = [
     "ingredientes": ["Harina", "Agua", "Sal", "Grasa"]
   }
 ];
+
+function lascomidas () {
   
 for (let i = 0; i < comidas.length; i++) {
 
 document.getElementById('comidaContainer').innerHTML +=
 `
   <article class="card">
-    <h2 class="comida">$(comidas[i].nombre)</h2>
-    <p>$(comidas[i].categoria)</p>
-    <p>$(comidas[i].provincia)</p>
-    <p>Ingredientes: $(comidas[i].ingredientes)</p>
+    <h2 class="nombrecomida">${comidas[i].nombre}</h2>
+    <p class="lascategorías">${comidas[i].categoria}</p>
+    <p class="laprovincia">${comidas[i].provincia}</p>
+    <p class="losingredientes">Ingredientes: ${comidas[i].ingredientes}</p>
   </article>;
 `
 }
+}
+
+function mostrarComidasconForEach () {
+
+  comidas.forEach ( comida => {
+
+    document.getElementById('comidaContainer').innerHTML +=
+`
+  <article class="card">
+    <h2 class="nombrecomida">${comida.nombre}</h2>
+    <p class="lascategorías">${comida.categoria}</p>
+    <p class="laprovincia">${comida.provincia}</p>
+    <p class="losingredientes">Ingredientes: ${comida.ingredientes}</p>
+  </article>
+`
+  } )
+}
+
+mostrarComidasconForEach();
+
+agregarComida.addEventListener ("submit", (e) => {
+
+alert("Comida nueva recibida: " + e.target.nombre.value);
+
+
+
+
+});
