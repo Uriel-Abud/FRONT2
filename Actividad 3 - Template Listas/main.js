@@ -93,6 +93,8 @@ document.getElementById('comidaContainer').innerHTML +=
 
 function mostrarComidasconForEach () {
 
+  comidaContainer.innerHTML = "";
+
   comidas.forEach ( comida => {
 
     document.getElementById('comidaContainer').innerHTML +=
@@ -109,11 +111,20 @@ function mostrarComidasconForEach () {
 
 mostrarComidasconForEach();
 
-agregarComida.addEventListener ("submit", (e) => {
+agregarComida.addEventListener ("submit", (event) => {
 
-alert("Comida nueva recibida: " + e.target.nombre.value);
+event.preventDefault();
+//alert("Comida nueva recibida: " + event.target.nombre.value);
 
+let nuevaComida = {
+  nombre: event.target.nombre.value,
+  categoria: event.target.categoria.value,
+  provincia: event.target.provincia.value,
+  ingredientes: event.target.ingredientes.value.split(","),
+}
 
+comidas.push(nuevaComida);
 
+mostrarComidasconForEach();
 
 });

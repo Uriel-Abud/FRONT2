@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comidas Argentinas</title> 
-    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+QLD+Hand:wght@400..700&family=Inconsolata:wght@200..900&family=Playwrite+CA+Guides&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -21,13 +24,16 @@
       <form id="agregarComida">
 
         <label>Nombre de la comida:</label>
-        <input type="text" placeholder="Nombre de la comida" name="nombre">
+        <input type="text" placeholder="Nombre de la comida" name="nombre" required>
 
         <label>Categoría:</label>
-        <input type="text" placeholder="Categoría">
+        <input type="text" placeholder="Categoría" name="categoria">
 
         <label>Provincia:</label>
-        <input type="text" placeholder="Provincia">
+        <input type="text" placeholder="Provincia" name="provincia">
+
+        <label>Ingredientes:</label>
+        <input type="text" placeholder="Ingredientes" name="ingredientes">
 
         <button type="submit">Agregar comida</button>
 
