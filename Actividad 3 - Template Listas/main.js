@@ -76,3 +76,38 @@ comidas.push(nuevaComida);
 mostrarComidasconForEach();
 
 });
+
+
+const buscador = document.getElementById("buscador");
+const filtroCategoria = document.getElementById("filtroCategoria");
+const filtroProvincia = document.getElementById("filtroProvincia");
+
+function filtrar () {
+  const comidasFiltradas = comidas.filter(comida => {
+    return comida.categoria.includes(filtroCategoria.value)
+    && comida.provincia.includes(filtroProvincia.value);
+  });
+
+  mostrarComidasconForEach(comidasFiltradas);
+}
+
+function buscar () {
+  const texto = buscador.value.toLowerCase();
+
+  const comidasFiltradas = comidas.filter(comida => {
+    return comida.nombre.toLowerCase().includes(texto)
+    || comida.provincia.toLowerCase().includes(texto)
+    || comida.categoria.toLowerCase().includes(texto);
+  });
+
+  mostrarComidasconForEach(comidasFiltradas);
+
+  //const comidasFiltradas = comidas.filter(comida => {
+  //  const datosComida = (comida.nombre + " " + comida.provincia + " " + comida.categoria).toLowerCase()
+  //  return datosComida.includes(texto);
+  //});
+}
+
+filtroCategoria.addEventListener("change", filtrar);
+filtroProvincia.addEventListener("change", filtrar);
+buscador.addEventListener("input", buscar);
