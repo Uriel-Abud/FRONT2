@@ -31,11 +31,11 @@ document.getElementById('comidaContainer').innerHTML +=
 }
 }
 
-function mostrarComidasconForEach () {
+function mostrarComidasconForEach (listadodecomidas = comidas) {
 
   comidaContainer.innerHTML = "";
 
-  comidas.forEach ( comida => {
+  listadodecomidas.forEach ( comida => {
 
   document.getElementById('comidaContainer').innerHTML +=
 `
@@ -89,6 +89,7 @@ function filtrar () {
   });
 
   mostrarComidasconForEach(comidasFiltradas);
+  console.log(comidasFiltradas);
 }
 
 function buscar () {
