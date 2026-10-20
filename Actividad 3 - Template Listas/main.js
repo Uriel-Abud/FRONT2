@@ -8,6 +8,7 @@ fetch('./data/comidas-extended.json')          // Ruta al archivo JSON
     console.log(data);    
     comidas = data;                   // Asignar el JSON a la variable comidas
     mostrarComidasconForEach();
+    actualiarFiltros();
   })
   .catch(error => {                   // Manejo de errores al leer el archivo JSON
     console.error('Error al leer el archivo JSON:', error);
@@ -64,16 +65,29 @@ agregarComida.addEventListener ("submit", (event) => {
 event.preventDefault();
 //alert("Comida nueva recibida: " + event.target.nombre.value);
 
+let listaIngredientes = [];
+const ingredientesInputs = document.querySelectorAll(".ingrediente");
+
+ingredientesInputs.forEach( input => {
+  listaIngredientes.push(input.value.trim());
+});
+
 let nuevaComida = {
   nombre: event.target.nombre.value,
   categoria: event.target.categoria.value,
   provincia: event.target.provincia.value,
-  ingredientes: event.target.ingredientes.value.split(","),
+  ingredientes: listaIngredientes, /*event.target.ingredientes.value.split(","), */
 }
 
 comidas.push(nuevaComida);
 
 mostrarComidasconForEach();
+
+ingredientesContainer.innerHTML = `<input type="text" class="ingrediente" placeholder="Ingrediente" required>`;
+
+actualiarFiltros();
+
+event.target.reset();
 
 });
 
@@ -112,3 +126,27 @@ function buscar () {
 filtroCategoria.addEventListener("change", filtrar);
 filtroProvincia.addEventListener("change", filtrar);
 buscador.addEventListener("input", buscar);
+
+const agregarIngredientesBtn = document.getElementById("agregarIngrediente");
+const ingredientesContainer = document.querySelector(".contenedor-ingredientes");
+
+agregarIngredientesBtn.addEventListener("click", () => {
+  ingredientesContainer.innerHTML += `<input type="text" class="ingrediente" placeholder="Ingrediente" required>`;
+});
+
+function actualiarFiltros() {
+
+  filtroCategoria.innerHTML = `<option value="">Todas la categorías</option>`;
+
+  let categorias = [];
+
+  comidas.forEach(comida => {
+    if (!categorias.includes(comida.categoria)) {
+      categorias.push(comida.categoria);
+    }
+  });
+
+  categorias.forEach(categoria => {
+    filtroCategoria.innerHTML += `<option value="${categoria}">${categoria}</option>`;
+  });
+};

@@ -17,10 +17,10 @@
        <div id="losdosfiltros">
        <select id="filtroCategoria">
           <option value="">Todas la categorías</option>
-          <option value="Parrilla">Parrilla</option>
+          <!--<option value="Parrilla">Parrilla</option>
           <option value="Horno">Horno</option>
           <option value="Guiso">Guiso</option>
-          <option value="Frito">Frito</option>
+          <option value="Frito">Frito</option>-->
        </select>
 
        <select id="filtroProvincia">
@@ -47,19 +47,22 @@
 
       <form id="agregarComida">
 
-        <label>Nombre de la comida:</label>
+        <label class="nombreparaagregar">Nombre de la comida:</label>
         <input type="text" placeholder="Nombre de la comida" name="nombre" required>
 
-        <label>Categoría:</label>
+        <label class="nombreparaagregar">Categoría:</label>
         <input type="text" placeholder="Categoría" name="categoria" required>
 
-        <label>Provincia:</label>
+        <label class="nombreparaagregar">Provincia:</label>
         <input type="text" placeholder="Provincia" name="provincia" required>
 
-        <label>Ingredientes:</label>
-        <input type="text" placeholder="Ingredientes (separados por ,)" name="ingredientes" required>
+        <label class="nombreparaagregar">Ingredientes:</label>
+        <div class="contenedor-ingredientes">
+        <input type="text" class="ingrediente" id="ingredientes" placeholder="Ingrediente" required>
+        </div>
+        <button type="button" id="agregarIngrediente">Agregar ingrediente</button>
 
-        <button type="submit">Agregar comida</button>
+        <button type="submit" id="botónagregarcomida">Agregar comida</button>
 
 
       </form>
