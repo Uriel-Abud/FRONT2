@@ -137,16 +137,27 @@ agregarIngredientesBtn.addEventListener("click", () => {
 function actualiarFiltros() {
 
   filtroCategoria.innerHTML = `<option value="">Todas la categorías</option>`;
+  filtroProvincia.innerHTML = `<option value="">Todas las provincias</option>`;
 
   let categorias = [];
+  let provincias = [];
 
   comidas.forEach(comida => {
     if (!categorias.includes(comida.categoria)) {
       categorias.push(comida.categoria);
     }
+
+    if (!provincias.includes(comida.provincia)) {
+      provincias.push(comida.provincia);
+    }
   });
+
 
   categorias.forEach(categoria => {
     filtroCategoria.innerHTML += `<option value="${categoria}">${categoria}</option>`;
+  });
+
+  provincias.forEach(provincia => {
+    filtroProvincia.innerHTML += `<option value="${provincia}">${provincia}</option>`;
   });
 };
