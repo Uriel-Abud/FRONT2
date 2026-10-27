@@ -149,6 +149,7 @@ header {
 input {
   width: 20rem;
   height: 1.5rem;
+  border: none;
   border-radius: 1rem;
   padding-left: 0.2rem;
   outline: none;
