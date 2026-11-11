@@ -23,6 +23,24 @@ header {
   padding: 0.2rem 2.5rem;
 }
 
+#buscador {
+  color: black;
+  width: 40%;
+  height: 50%;
+  border: 0.1rem solid black;
+  padding-left: 0.5rem;
+}
+
+#filtroCategoria {
+  color: black;
+  width: 40%;
+  height: 50%;
+  border: 0.1rem solid black;
+  border-radius: 1rem;
+  padding-left: 0.1rem;
+  outline: none;
+}
+
 .comida-container {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -33,21 +51,21 @@ header {
     padding-top: 10%;
   }
   
-  .card {
-    background-color: wheat;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    width: 100%;
-    border: 0.2rem solid black;
-    border-radius: 2rem;
-    padding: 1rem;
-    gap: 1rem;
-  }
+.card {
+  background-color: wheat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
+  border: 0.2rem solid black;
+  border-radius: 2rem;
+  padding: 1rem;
+  gap: 1rem;
+}
 
-  .lasimágenes {
-    width: 20vh;
-    height: 25vh;
-  }
+.lasimágenes {
+  width: 20vh;
+  height: 25vh;
+}

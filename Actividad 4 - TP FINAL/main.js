@@ -4,7 +4,7 @@ fetch('https://swapi.dev/api/people/')          // Ruta al archivo JSON
     console.log('Personajes de Star Wars:');
     console.log(data.results);    
     personajes = data.results;        // Asignar el JSON a la variable comidas
-    mostrarComidasconForEach();
+    mostrarPersonajesconForEach();
     actualiarFiltros();
   })
   .catch(error => {                   // Manejo de errores al leer el archivo JSON
@@ -15,7 +15,7 @@ let personajes = [];
 
 // HAY QUE AGREGAR A TODOS LOS PERSONAJES
 
-function mostrarComidasconForEach (listadodepersonajes = personajes) {
+function mostrarPersonajesconForEach (listadodepersonajes = personajes) {
 
     let CONTENEDOR = document.getElementById("comidaContainer");
     CONTENEDOR.innerHTML = "";
@@ -35,4 +35,4 @@ function mostrarComidasconForEach (listadodepersonajes = personajes) {
     // CAMBIAR LAS IMÁGENES
 }
 
-mostrarComidasconForEach();
+mostrarPersonajesconForEach();
