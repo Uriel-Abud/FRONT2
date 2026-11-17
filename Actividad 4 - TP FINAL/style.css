@@ -5,7 +5,9 @@
 }
 
 body {
-  background-color: #bfbfff;
+  background-image: url(Fondo\ del\ espacio.png);
+  width: 100%;
+  height: 100%;
 }
 
 header {
@@ -41,7 +43,7 @@ header {
   outline: none;
 }
 
-.comida-container {
+.personaje-container {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 5rem 2rem;
@@ -59,10 +61,15 @@ header {
   align-items: center;
   height: auto;
   width: 100%;
-  border: 0.2rem solid black;
+  border: 0.2rem solid #151577;
   border-radius: 2rem;
   padding: 1rem;
   gap: 1rem;
+}
+
+.nombrepersonaje {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 .lasimágenes {

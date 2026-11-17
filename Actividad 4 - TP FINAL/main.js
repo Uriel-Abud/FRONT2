@@ -1,52 +1,23 @@
-/*fetch('https://swapi.dev/api/people/')          // Ruta al archivo JSON
+for (let i = 1; i <= 9; i++) { // 9 porque son todas las páginas posibles
+fetch(`https://swapi.dev/api/people/?page=${i}`)          // Ruta al archivo JSON
   .then(response => response.json())  // Convertir la respuesta en JSON
   .then(data => {                     // Aquí tienes acceso al JSON en formato de objeto JS
     console.log('Personajes de Star Wars:');
     console.log(data.results);    
-    personajes = data.results;        // Asignar el JSON a la variable comidas
+    personajes.push(...data.results)
     mostrarPersonajesconForEach();
     actualiarFiltros();
   })
   .catch(error => {                   // Manejo de errores al leer el archivo JSON
     console.error('Error al conectar con la API:', error);
-  });*/
-
-  Promise.all([
-    fetch('https://swapi.dev/api/people/?page=1').then(response => response.json()),  // Convertir la respuesta en JSON
-    fetch('https://swapi.dev/api/people/?page=2').then(response => response.json()),  // Convertir la respuesta en JSON
-    fetch('https://swapi.dev/api/people/?page=3').then(response => response.json()),  // Convertir la respuesta en JSON
-    fetch('https://swapi.dev/api/people/?page=4').then(response => response.json()),  // Convertir la respuesta en JSON
-  ])
-    .then(paginas => {
-      paginas.forEach(data => {
-        personajes.push(...data.results);
-      });
-  
-      console.log('Personajes de Star Wars:', personajes);
-      mostrarPersonajesconForEach();
-      actualiarFiltros();
-    })
-    .catch(error => {                   // Manejo de errores al leer el archivo JSON
-      console.error('Error al conectar con la API:', error);
-    });
+  });
+}
 
 let personajes = [];
 
 // HAY QUE AGREGAR A TODOS LOS PERSONAJES
 
-/*async function obtenerTodosLosPersonajes() {
-  let url = 'https://swapi.dev/api/people/';
-  while (url !== null && personajes.length < 50) {
-      const res = await fetch(url);
-      const data = await res.json();
-      personajes.push(...data.results);
-      url = data.next;
-  }
-  
-  mostrarPersonajesconForEach();
-}*/
-
-const imagenesdelospersonajes = {
+let imagenesdelospersonajes = {
   "Luke Skywalker": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/1.jpg",
   "C-3PO": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/2.jpg",
   "R2-D2": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/3.jpg",
@@ -86,12 +57,54 @@ const imagenesdelospersonajes = {
   "Rugor Nass": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/38.jpg",
   "Ric Olié": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/39.jpg",
   "Watto": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/40.jpg",
-  "Sebulba": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/41.jpg"
+  "Sebulba": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/41.jpg",
+  "Quarsh Panaka": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/42.jpg",
+  "Shmi Skywalker": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/43.jpg",
+  "Darth Maul": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/44.jpg",
+  "Bib Fortuna": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/45.jpg",
+  "Ayla Secura": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/46.jpg",
+  "Ratts Tyerel": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/47.jpg",
+  "Dud Bolt": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/48.jpg",
+  "Gasgano": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/49.jpg",
+  "Ben Quadinaros": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/50.jpg",
+  "Mace Windu": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/51.jpg",
+  "Ki-Adi-Mundi": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/52.jpg",
+  "Kit Fisto": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/53.jpg",
+  "Eeth Koth": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/54.jpg",
+  "Adi Gallia": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/55.jpg",
+  "Saesee Tiin": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/56.jpg",
+  "Yarael Poof": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/57.jpg",
+  "Plo Koon": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/58.jpg",
+  "Mas Amedda": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/59.jpg",
+  "Gregar Typho": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/60.jpg",
+  "Cordé": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/61.jpg",
+  "Cliegg Lars": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/62.jpg",
+  "Poggle the Lesser": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/63.jpg",
+  "Luminara Unduli": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/64.jpg",
+  "Barriss Offee": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/65.jpg",
+  "Dormé": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/66.jpg",
+  "Dooku": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/67.jpg",
+  "Bail Prestor Organa": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/68.jpg",
+  "Jango Fett": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/69.jpg",
+  "Zam Wesell": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/70.jpg",
+  "Dexter Jettster": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/71.jpg",
+  "Lama Su": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/72.jpg",
+  "Taun We": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/73.jpg",
+  "Jocasta Nu": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/74.jpg",
+  "R4-P17": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/75.jpg",
+  "Wat Tambor": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/76.jpg",
+  "San Hill": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/77.jpg",
+  "Shaak Ti": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/78.jpg",
+  "Grievous": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/79.jpg",
+  "Tarfful": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/80.jpg",
+  "Raymus Antilles": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/81.jpg",
+  "Sly Moore": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/82.jpg",
+  "Tion Medon": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/83.jpg"
 };
 
 function mostrarPersonajesconForEach (listadodepersonajes = personajes) {
 
-    let CONTENEDOR = document.getElementById("comidaContainer");
+    let CONTENEDOR = document.getElementById("personajeContainer");
     CONTENEDOR.innerHTML = "";
 
     listadodepersonajes.forEach ( buscarPERSONAJE => {
@@ -99,15 +112,13 @@ function mostrarPersonajesconForEach (listadodepersonajes = personajes) {
         CONTENEDOR.innerHTML +=
         `
         <article class="card">
-            <h2 class="nombrecomida">${buscarPERSONAJE.name}</h2>
+            <h2 class="nombrepersonaje">${buscarPERSONAJE.name}</h2>
             <img src="${imagenesdelospersonajes[buscarPERSONAJE.name]}" class="lasimágenes" alt="${buscarPERSONAJE.name}">
-            <p class="fechadecumple">Fecha de cumple: ${buscarPERSONAJE.birth_year}</p>
-            <p class="colordeojo">Color de ojo: ${buscarPERSONAJE.eye_color}</p>
+            <p class="fechadecumple">Cumpleaños: ${buscarPERSONAJE.birth_year}</p>
+            <p class="colordeojo">Color de ojo: ${buscarPERSONAJE.eye_color.toUpperCase()}</p>
         </article>
         `;
     });
-    // CAMBIAR LAS IMÁGENES
 }
 
-/*mostrarPersonajesconForEach();*/
-obtenerTodosLosPersonajes();
+mostrarPersonajesconForEach();
