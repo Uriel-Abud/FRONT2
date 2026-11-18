@@ -2,11 +2,21 @@ for (let i = 1; i <= 9; i++) { // 9 porque son todas las páginas posibles
 fetch(`https://swapi.dev/api/people/?page=${i}`)          // Ruta al archivo JSON
   .then(response => response.json())  // Convertir la respuesta en JSON
   .then(data => {                     // Aquí tienes acceso al JSON en formato de objeto JS
-    console.log('Personajes de Star Wars:');
+    console.log('Personajes de Star Wars (lista ' + i + '):');
     console.log(data.results);    
-    personajes.push(...data.results)
+    paginas[i - 1] = data.results;
+    personajes = [];
+    paginas.forEach(lista => {
+      lista.forEach(personaje => {
+        personajes.push(personaje);
+      });
+    });
+
+    if (i === 9) {
+      console.log("Todos los personajes", personajes);
+    }
+    
     mostrarPersonajesconForEach();
-    actualiarFiltros();
   })
   .catch(error => {                   // Manejo de errores al leer el archivo JSON
     console.error('Error al conectar con la API:', error);
@@ -14,8 +24,7 @@ fetch(`https://swapi.dev/api/people/?page=${i}`)          // Ruta al archivo JSO
 }
 
 let personajes = [];
-
-// HAY QUE AGREGAR A TODOS LOS PERSONAJES
+let paginas = [];
 
 let imagenesdelospersonajes = {
   "Luke Skywalker": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/1.jpg",
@@ -109,15 +118,30 @@ function mostrarPersonajesconForEach (listadodepersonajes = personajes) {
 
     listadodepersonajes.forEach ( buscarPERSONAJE => {
 
-        CONTENEDOR.innerHTML +=
-        `
-        <article class="card">
-            <h2 class="nombrepersonaje">${buscarPERSONAJE.name}</h2>
-            <img src="${imagenesdelospersonajes[buscarPERSONAJE.name]}" class="lasimágenes" alt="${buscarPERSONAJE.name}">
-            <p class="fechadecumple">Cumpleaños: ${buscarPERSONAJE.birth_year}</p>
-            <p class="colordeojo">Color de ojo: ${buscarPERSONAJE.eye_color.toUpperCase()}</p>
-        </article>
-        `;
+      if (buscarPERSONAJE.gender === "n/a" || buscarPERSONAJE.gender === "none") {
+        buscarPERSONAJE.gender = "robot";
+      }
+      else if (buscarPERSONAJE.gender === "male") {
+        buscarPERSONAJE.gender = "masculino";
+      }
+      else if (buscarPERSONAJE.gender === "female") {
+        buscarPERSONAJE.gender = "femenino";
+      }
+      else if (buscarPERSONAJE.gender === "hermaphrodite") {
+        buscarPERSONAJE.gender = "hermafrodita";
+      }
+
+      CONTENEDOR.innerHTML +=
+      `
+      <article class="card">
+          <h2 class="nombrepersonaje">${buscarPERSONAJE.name}</h2>
+          <img src="${imagenesdelospersonajes[buscarPERSONAJE.name]}" class="lasimágenes" alt="${buscarPERSONAJE.name}">
+          <p class="fechadecumple">Cumpleaños: ${buscarPERSONAJE.birth_year}</p>
+          <p class="colordeojo">Color de ojo: ${buscarPERSONAJE.eye_color.toUpperCase()}</p>
+          <p class="género">Género: ${buscarPERSONAJE.gender.toUpperCase()}</p>
+          <p class="colordepelo">Color de pelo: ${buscarPERSONAJE.hair_color.toUpperCase()}</p>
+      </article>
+      `;
     });
 }
 
