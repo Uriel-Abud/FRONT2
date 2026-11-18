@@ -26,6 +26,59 @@ fetch(`https://swapi.dev/api/people/?page=${i}`)          // Ruta al archivo JSO
 let personajes = [];
 let paginas = [];
 
+fetch("https://swapi.dev/api/films/")
+  .then(response => response.json())
+  .then(data => {
+    console.log('Películas:', data.results);
+    data.results.forEach(lapelícula => {
+      peliculas[lapelícula.url] = lapelícula.title;
+    });
+
+    mostrarPersonajesconForEach();
+  })
+  .catch(error => {
+    console.error('Error al conectar con la API:', error);
+  });
+
+let peliculas = {};
+
+for (let i = 1; i <= 4; i++) {
+  fetch(`https://swapi.dev/api/starships/?page=${i}`)
+    .then(response => response.json())
+    .then(data => {
+      console.log('Naves:', data.results);
+      data.results.forEach(lanave => {
+        naves[lanave.url] = lanave.name;
+      });
+
+      mostrarPersonajesconForEach();
+    })
+    .catch(error => {
+      console.error('Error al conectar con la API:', error);
+    });
+}
+
+let naves = {};
+
+for (let i = 1; i <= 4; i++) {
+  fetch(`https://swapi.dev/api/vehicles/?page=${i}`)
+    .then(response => response.json())
+    .then(data => {
+      console.log('Vehículos:', data.results);
+      data.results.forEach(elvehiculo => {
+        vehículos[elvehiculo.url] = elvehiculo.name;
+      });
+
+      mostrarPersonajesconForEach();
+    })
+    .catch(error => {
+      console.error('Error al conectar con la API:', error);
+    });
+}
+
+let vehículos = {};
+
+
 let imagenesdelospersonajes = {
   "Luke Skywalker": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/1.jpg",
   "C-3PO": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/2.jpg",
@@ -116,7 +169,7 @@ function mostrarPersonajesconForEach (listadodepersonajes = personajes) {
     let CONTENEDOR = document.getElementById("personajeContainer");
     CONTENEDOR.innerHTML = "";
 
-    listadodepersonajes.forEach ( buscarPERSONAJE => {
+    listadodepersonajes.forEach (buscarPERSONAJE => {
 
       if (buscarPERSONAJE.gender === "n/a" || buscarPERSONAJE.gender === "none") {
         buscarPERSONAJE.gender = "robot";
@@ -131,6 +184,31 @@ function mostrarPersonajesconForEach (listadodepersonajes = personajes) {
         buscarPERSONAJE.gender = "hermafrodita";
       }
 
+      let nombrepelículas = [];
+
+      buscarPERSONAJE.films.forEach(película => {
+        nombrepelículas.push(peliculas[película]);
+      });
+
+      let nombrenaves = [];
+
+      buscarPERSONAJE.starships.forEach(nave => {
+        nombrenaves.push(naves[nave]);
+      });
+
+      if (nombrenaves.length === 0) {
+        nombrenaves.push("No tiene");
+      }
+
+      let nombrevehículos = [];
+      buscarPERSONAJE.vehicles.forEach(vehículo => {
+        nombrevehículos.push(vehículos[vehículo]);
+      });
+
+      if (nombrevehículos.length === 0) {
+        nombrevehículos.push("No tiene");
+      }
+
       CONTENEDOR.innerHTML +=
       `
       <article class="card">
@@ -140,6 +218,15 @@ function mostrarPersonajesconForEach (listadodepersonajes = personajes) {
           <p class="colordeojo">Color de ojo: ${buscarPERSONAJE.eye_color.toUpperCase()}</p>
           <p class="género">Género: ${buscarPERSONAJE.gender.toUpperCase()}</p>
           <p class="colordepelo">Color de pelo: ${buscarPERSONAJE.hair_color.toUpperCase()}</p>
+          <ul class="películas">Películas:
+            <li>${nombrepelículas.join("</li><li>")}</li>
+          </ul>
+          <ul class="naves">Naves espaciales:
+            <li>${nombrenaves.join("</li><li>")}</li>
+          </ul>
+          <ul class="vehículos">Vehículos terrestres:
+            <li>${nombrevehículos.join("</li><li>")}</li>
+          </ul>
       </article>
       `;
     });
