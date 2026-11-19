@@ -23,8 +23,8 @@ fetch(`https://swapi.dev/api/people/?page=${i}`)          // Ruta al archivo JSO
   });
 }
 
-let personajes = [];
 let paginas = [];
+let personajes = [];
 
 fetch("https://swapi.dev/api/films/")
   .then(response => response.json())
@@ -233,3 +233,17 @@ function mostrarPersonajesconForEach (listadodepersonajes = personajes) {
 }
 
 mostrarPersonajesconForEach();
+
+let buscador = document.getElementById("buscador");
+
+function buscar () {
+  let textoescrito = buscador.value.toLowerCase();
+
+  let personajesfiltrados = personajes.filter(elpersonaje => {
+    return elpersonaje.name.toLowerCase().includes(textoescrito);
+  });
+
+  mostrarPersonajesconForEach(personajesfiltrados);
+}
+
+buscador.addEventListener("input", buscar);
