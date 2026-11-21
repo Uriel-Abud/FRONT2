@@ -17,6 +17,7 @@ fetch(`https://swapi.dev/api/people/?page=${i}`)          // Ruta al archivo JSO
     }
     
     mostrarPersonajesconForEach();
+    actualizarFiltros();
   })
   .catch(error => {                   // Manejo de errores al leer el archivo JSON
     console.error('Error al conectar con la API:', error);
@@ -35,6 +36,7 @@ fetch("https://swapi.dev/api/films/")
     });
 
     mostrarPersonajesconForEach();
+    actualizarFiltros();
   })
   .catch(error => {
     console.error('Error al conectar con la API:', error);
@@ -52,6 +54,7 @@ for (let i = 1; i <= 4; i++) {
       });
 
       mostrarPersonajesconForEach();
+      actualizarFiltros();
     })
     .catch(error => {
       console.error('Error al conectar con la API:', error);
@@ -70,6 +73,7 @@ for (let i = 1; i <= 4; i++) {
       });
 
       mostrarPersonajesconForEach();
+      actualizarFiltros();
     })
     .catch(error => {
       console.error('Error al conectar con la API:', error);
@@ -78,6 +82,24 @@ for (let i = 1; i <= 4; i++) {
 
 let vehículos = {};
 
+for (let i = 1; i <= 6; i++) {
+  fetch(`https://swapi.dev/api/planets/?page=${i}`)
+    .then(response => response.json())
+    .then(data => {
+      console.log('Planetas:', data.results);
+      data.results.forEach(elplaneta => {
+        planetas[elplaneta.url] = elplaneta.name;
+      });
+
+      mostrarPersonajesconForEach();
+      actualizarFiltros();
+    })
+    .catch(error => {
+      console.error('Error al conectar con la API:', error);
+    });
+}
+
+let planetas = {};
 
 let imagenesdelospersonajes = {
   "Luke Skywalker": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/1.jpg",
@@ -164,25 +186,32 @@ let imagenesdelospersonajes = {
   "Tion Medon": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/83.jpg"
 };
 
+function traducirgénero (género) {
+  if (género === "n/a") {
+    return "Droide";
+  }
+  else if (género === "none") {
+    return "Droide malvado";
+  }
+  else if (género === "male") {
+    return "Masculino";
+  }
+  else if (género === "female") {
+    return "Femenino";
+  }
+  else if (género === "hermaphrodite") {
+    return "Hermafrodita";
+  }
+
+  return género;
+}
+
 function mostrarPersonajesconForEach (listadodepersonajes = personajes) {
 
     let CONTENEDOR = document.getElementById("personajeContainer");
     CONTENEDOR.innerHTML = "";
 
     listadodepersonajes.forEach (buscarPERSONAJE => {
-
-      if (buscarPERSONAJE.gender === "n/a" || buscarPERSONAJE.gender === "none") {
-        buscarPERSONAJE.gender = "robot";
-      }
-      else if (buscarPERSONAJE.gender === "male") {
-        buscarPERSONAJE.gender = "masculino";
-      }
-      else if (buscarPERSONAJE.gender === "female") {
-        buscarPERSONAJE.gender = "femenino";
-      }
-      else if (buscarPERSONAJE.gender === "hermaphrodite") {
-        buscarPERSONAJE.gender = "hermafrodita";
-      }
 
       let nombrepelículas = [];
 
@@ -201,12 +230,19 @@ function mostrarPersonajesconForEach (listadodepersonajes = personajes) {
       }
 
       let nombrevehículos = [];
+
       buscarPERSONAJE.vehicles.forEach(vehículo => {
         nombrevehículos.push(vehículos[vehículo]);
       });
 
       if (nombrevehículos.length === 0) {
         nombrevehículos.push("No tiene");
+      }
+
+      let nombreplaneta = planetas[buscarPERSONAJE.homeworld];
+
+      if (nombreplaneta === "unknown") {
+        nombreplaneta = "Desconocido";
       }
 
       CONTENEDOR.innerHTML +=
@@ -216,7 +252,7 @@ function mostrarPersonajesconForEach (listadodepersonajes = personajes) {
           <img src="${imagenesdelospersonajes[buscarPERSONAJE.name]}" class="lasimágenes" alt="${buscarPERSONAJE.name}">
           <p class="fechadecumple">Cumpleaños: ${buscarPERSONAJE.birth_year}</p>
           <p class="colordeojo">Color de ojo: ${buscarPERSONAJE.eye_color.toUpperCase()}</p>
-          <p class="género">Género: ${buscarPERSONAJE.gender.toUpperCase()}</p>
+          <p class="género">Género: ${traducirgénero(buscarPERSONAJE.gender).toUpperCase()}</p>
           <p class="colordepelo">Color de pelo: ${buscarPERSONAJE.hair_color.toUpperCase()}</p>
           <ul class="películas">Películas:
             <li>${nombrepelículas.join("</li><li>")}</li>
@@ -227,6 +263,7 @@ function mostrarPersonajesconForEach (listadodepersonajes = personajes) {
           <ul class="vehículos">Vehículos terrestres:
             <li>${nombrevehículos.join("</li><li>")}</li>
           </ul>
+          <p class="planeta">Planeta de origen: ${nombreplaneta}</p>
       </article>
       `;
     });
@@ -235,8 +272,13 @@ function mostrarPersonajesconForEach (listadodepersonajes = personajes) {
 mostrarPersonajesconForEach();
 
 let buscador = document.getElementById("buscador");
+let filtrogénero = document.getElementById("género");
+let filtropelículas = document.getElementById("películas");
+let filtronaves = document.getElementById("navesespaciales");
+let filtroterrestres = document.getElementById("terrestres");
+let filtroplaneta = document.getElementById("planeta");
 
-function buscar () {
+/*function buscar () {
   let textoescrito = buscador.value.toLowerCase();
 
   let personajesfiltrados = personajes.filter(elpersonaje => {
@@ -244,6 +286,126 @@ function buscar () {
   });
 
   mostrarPersonajesconForEach(personajesfiltrados);
+}*/
+
+function obtenerDatosPersonaje (personaje) {
+  let nombrepelículas = [];
+  personaje.films.forEach(película => {
+    nombrepelículas.push(peliculas[película]);
+  });
+  
+  let nombrenaves = [];
+  personaje.starships.forEach(nave => {
+    nombrenaves.push(naves[nave]);
+  });
+    
+  if (nombrenaves.length === 0) {
+    nombrenaves.push("No tiene");
+  }
+
+  let nombrevehículos = [];
+  personaje.vehicles.forEach(vehículo => {
+    nombrevehículos.push(vehículos[vehículo]);
+  });
+    
+  if (nombrevehículos.length === 0) {
+    nombrevehículos.push("No tiene");
+  }
+    
+  let nombreplaneta = planetas[personaje.homeworld];
+    
+  if (nombreplaneta === "unknown") {
+    nombreplaneta = "Desconocido";
+  }
+
+  return {nombrepelículas, nombrenaves, nombrevehículos, nombreplaneta};
 }
 
-buscador.addEventListener("input", buscar);
+function buscarYFiltrar () {
+  let textoescrito = buscador.value.toLowerCase();
+  
+  let filtros = personajes.filter(elfiltro => {
+    let datos = obtenerDatosPersonaje(elfiltro);
+
+    return elfiltro.name.toLowerCase().includes(textoescrito)
+    && (filtrogénero.value === "" || elfiltro.gender === filtrogénero.value)
+    && (filtropelículas.value === "" || datos.nombrepelículas.includes(filtropelículas.value))
+    && (filtronaves.value === "" || datos.nombrenaves.includes(filtronaves.value))
+    && (filtroterrestres.value === "" || datos.nombrevehículos.includes(filtroterrestres.value))
+    && (filtroplaneta.value === "" || datos.nombreplaneta === filtroplaneta.value);
+  });
+
+  mostrarPersonajesconForEach(filtros);
+  console.log('Filtros:', filtros);
+}
+
+buscador.addEventListener("input", buscarYFiltrar);
+filtrogénero.addEventListener("change", buscarYFiltrar);
+filtropelículas.addEventListener("change", buscarYFiltrar);
+filtronaves.addEventListener("change", buscarYFiltrar);
+filtroterrestres.addEventListener("change", buscarYFiltrar);
+filtroplaneta.addEventListener("change", buscarYFiltrar);
+
+function actualizarFiltros () {
+  filtrogénero.innerHTML = `<option value="">Todos los géneros</option>`;
+  filtropelículas.innerHTML = `<option value="">Todas las películas</option>`;
+  filtronaves.innerHTML = `<option value="">Todas las naves</option>`;
+  filtroterrestres.innerHTML = `<option value="">Todos los vehículos</option>`;
+  filtroplaneta.innerHTML = `<option value="">Todos los planetas</option>`;
+
+  let géneros = [];
+  let películas = [];
+  let naves = [];
+  let terrestres = [];
+  let planetas = [];
+
+  personajes.forEach(elpersonaje => {
+    let datos = obtenerDatosPersonaje(elpersonaje);
+
+    if (!géneros.includes(elpersonaje.gender)) {
+      géneros.push(elpersonaje.gender);
+    }
+
+    datos.nombrepelículas.forEach(lapelícula => {
+      if (!películas.includes(lapelícula)) {
+        películas.push(lapelícula);
+      }
+    });
+
+    datos.nombrenaves.forEach(lanave => {
+      if (!naves.includes(lanave)) {
+        naves.push(lanave);
+      }
+    });
+
+    datos.nombrevehículos.forEach(elvehículo => {
+      if (!terrestres.includes(elvehículo)) {
+        terrestres.push(elvehículo);
+      }
+    });
+
+    if (!planetas.includes(datos.nombreplaneta)) {
+      planetas.push(datos.nombreplaneta);
+    }
+  });
+
+  géneros.forEach(elgénero => {
+    filtrogénero.innerHTML += `<option value="${elgénero}">${traducirgénero(elgénero)}</option>`;
+  });
+
+  películas.forEach(lapelícula => {
+    filtropelículas.innerHTML += `<option value="${lapelícula}">${lapelícula}</option>`;
+  });
+
+  naves.forEach(lanave => {
+    filtronaves.innerHTML += `<option value="${lanave}">${lanave}</option>`;
+  });
+
+  terrestres.forEach(elvehículo => {
+    filtroterrestres.innerHTML += `<option value="${elvehículo}">${elvehículo}</option>`;
+  });
+
+  planetas.forEach(elplaneta => {
+    filtroplaneta.innerHTML += `<option value="${elplaneta}">${elplaneta}</option>`;
+  });
+}

@@ -21,19 +21,35 @@ header {
   background-color: #0e0e35;
   z-index: 1000;
   margin-top: 0;
-  gap: 10rem;
-  padding: 0.2rem 2.5rem;
+  gap: 5rem;
+  padding: 0 1.5rem;
 }
 
 #buscador {
   color: black;
-  width: 40%;
+  width: 25%;
   height: 50%;
   border: 0.1rem solid black;
-  padding-left: 0.5rem;
+  padding: 0 0.5rem;
+  outline: none;
 }
 
-#filtroCategoria {
+#logopelícula {
+  height: 100%;
+  width: 10vw;
+}
+
+#todoslosfiltros {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 60%;
+  gap: 1rem;
+}
+
+.filtros {
   color: black;
   width: 40%;
   height: 50%;
@@ -57,7 +73,7 @@ header {
   background-color: wheat;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: auto;
   width: 100%;
